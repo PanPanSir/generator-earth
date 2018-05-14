@@ -1,0 +1,64 @@
+{
+  "name": "generator-earth",
+  "version": "0.1.7",
+  "description": "react dev prod and so on",
+  "authors": [
+    {
+      "name": "David Feng",
+      "email": "sublime3@163.com",
+      "url": ""
+    }
+  ],
+  "files": [
+    "app",
+    "component",
+    "project",
+    "_libs",
+    "common",
+    "update"
+  ],
+  "main": "app/index.js",
+  "keywords": [
+    "yoman generator webpack node ",
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "yeoman-test": "^1.6.0",
+    "yeoman-assert": "^3.0.0",
+    "coveralls": "^2.13.1",
+    "nsp": "^2.6.3",
+    "eslint": "^4.1.0",
+    "eslint-config-xo-space": "^0.16.0",
+    "jest": "^19.0.2",
+    "jest-cli": "^20.0.0"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "inquirer": "^3.2.2",
+    "mkdirp": "^0.5.1",
+    "npm-updater": "^3.0.3",
+    "shelljs": "^0.7.8",
+    "yeoman-generator": "^1.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "prepublish": "nsp check",
+    "pretest": "eslint . --fix",
+    "test": "jest"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "jest": true,
+      "node": true
+    }
+  },
+  "repository": "git@github.com:FFF-team/generator-earth.git",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FFF-team/generator-earth/issues"
+  },
+  "homepage": "https://github.com/FFF-team/generator-earth#readme"
+}
