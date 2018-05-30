@@ -96,6 +96,9 @@ module.exports = class extends Generator {
                 name: 'React',
                 value: 'react'
 
+            }, {
+                name: 'React-latest',
+                value: 'react-latest'
             }]
 
         }, {
@@ -138,7 +141,7 @@ module.exports = class extends Generator {
             message: '是否使用 redux',
             type: 'confirm',
             default: false,
-            when: answer => answer.frameType === 'react'
+            when: answer => answer.frameType.indexOf('react') >= 0
 
         }, {
 
@@ -215,17 +218,18 @@ module.exports = class extends Generator {
 
 
         let outPutUrl = this.createRoot ? this.name + '/' : './';
-        let resetCss = this.projectType == 'h5' ? 'reset.scss' : 'reset_pc.scss';
+        let resetCss = this.projectType === 'h5' ? 'reset.scss' : 'reset_pc.scss';
 
         switch (this.frameType) {
 
             case 'react':
+            case 'react-latest':
 
                 let tplFile = '';
                 if(this.useRedux){
-                    tplFile = 'react-redux';
+                    tplFile = `${this.frameType}-redux`;
                 } else {
-                    tplFile = 'react';
+                    tplFile = `${this.frameType}`;
                 }
 
                 let tplPath = this.templatePath(`../${tplFile}`);
