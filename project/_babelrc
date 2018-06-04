@@ -1,7 +1,7 @@
 {
     "presets": [
         ["env", {
-            modules: false,
+            "modules": false
         }],
         "react-app"
     ],
