@@ -92,13 +92,13 @@ module.exports = class extends Generator {
             message: '框架选型',
             type: 'list',
             choices: [{
+                name: 'React-latest',
+                value: 'react-latest'
+            }, {
 
                 name: 'React',
                 value: 'react'
 
-            }, {
-                name: 'React-latest',
-                value: 'react-latest'
             }]
 
         }, {
