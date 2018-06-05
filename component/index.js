@@ -128,6 +128,10 @@ module.exports = class extends Generator {
 
                 }
 
+                if (!/^([A-Za-z]+-)*[A-Za-z]+$/.test(input)) {
+                    return '请输入合法的组件名称,例如: abc或abc-def形式'
+                }
+
                 return true;
 
             }
@@ -230,7 +234,7 @@ module.exports = class extends Generator {
                     outPutUrl,
                     {
                         name: this.name,
-                        upperCaseName: this.name.substr(0,1).toLocaleUpperCase() + this.name.substr(1),
+                        upperCaseName: this.name.split('-').map((v) => v.replace(/^\w/, ($1) => $1.toUpperCase())).join(''),
                         author: this.author,
                         frameType: this.frameType,
                         email: this.email,
