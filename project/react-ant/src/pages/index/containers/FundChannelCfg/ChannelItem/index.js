@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
-import { Button,Form } from 'antd'
-import { Link} from 'react-router-dom'
+import React from 'react'
+import { Form } from 'antd'
 
 
 import combineContainer from 'ROOT_SOURCE/base/CompConjunction'
@@ -15,11 +14,11 @@ let ListForm = combineContainer(F).withReducers(reducers).withActions(actions).v
 ListForm = Form.create()(ListForm)
 
 
-export default (props) =>{ 
+export default (props) =>{
     return (
         <section>
             <ListForm {...props}/>
         </section>
     )
-  
+
 }

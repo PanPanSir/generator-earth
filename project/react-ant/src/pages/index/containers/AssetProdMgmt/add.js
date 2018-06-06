@@ -1,11 +1,9 @@
-import moment from 'moment'
 import React from 'react'
-import { DatePicker, Button, Form, Input, Select, Row, Col, message } from 'antd'
+import { Button, Form, Input, Select, Row, Col, message } from 'antd'
 
 import BaseContainer from 'ROOT_SOURCE/base/BaseContainer'
 
 import { sleep } from 'ROOT_SOURCE/utils/index'
-import { mapMoment } from 'ROOT_SOURCE/utils/FieldFormatter'
 import Rules from 'ROOT_SOURCE/utils/ValidateRules'
 import request from 'ROOT_SOURCE/utils/request'
 
@@ -50,24 +48,24 @@ export default Form.create()( class extends BaseContainer {
             this.setState({
                 assetNames: res.data
             });
-        } 
+        }
     }
-    
-    
+
+
     submitForm = (e) => {
-        
+
         e && e.preventDefault()
-        
+
         const { form } = this.props
-        
+
         form.validateFieldsAndScroll(async (err, values) => {
             if (err) {
                 return;
             }
-            
+
             // 提交表单最好新一个事务，不受其他事务影响
             await sleep(0)
-            
+
             let _formData = { ...form.getFieldsValue() }
 
             const { singleLimit, dateLimit, totalLimit } = values;
@@ -85,11 +83,11 @@ export default Form.create()( class extends BaseContainer {
                 message.error('单笔限额不得大于日限额', 5);
             } else if (balance2 < 0) {
                 message.error('日限额不得大于总额度', 5);
-            }          
-            
+            }
+
         })
     }
-    
+
     handleNumberFormat = (e) => {
         const { value, id } = e.target;
         const { form } = this.props;
@@ -104,18 +102,18 @@ export default Form.create()( class extends BaseContainer {
             }
         });
     }
-    
-    
+
+
     render() {
-        
+
         let { form } = this.props
         let { getFieldDecorator } = form
-        
-        
+
+
         return (
             <div className="ui-background">
                 <Form layout="inline" onSubmit={this.submitForm}>
-                
+
                 <FormItem label="资产方名称" hasFeedback>
                         {getFieldDecorator('assetId', {
                             rules: [{ required: true, message: '请选择资产方名称' }]
@@ -123,7 +121,7 @@ export default Form.create()( class extends BaseContainer {
                             {this.state.assetNames.map((item) => <Option value={item.id} key={item.id}>{item.item}</Option>)}
                         </Select>)}
                     </FormItem>
-        
+
                     <FormItem label="资产方产品" hasFeedback>
                         {getFieldDecorator('assetPrdName', {
                             rules: [{ required: true, message: '请输入资产方产品' }]
@@ -134,7 +132,7 @@ export default Form.create()( class extends BaseContainer {
                     <Row gutter={8}>
                         <Col span={18}>
                             {getFieldDecorator('rate', {
-                                rules: [{ 
+                                rules: [{
                                     required: true,
                                     whitespace: true,
                                     transform: toNumber,
@@ -155,7 +153,7 @@ export default Form.create()( class extends BaseContainer {
                             {PAY_METHOD_MAP.map((item) => <Option value={item.id} key={item.id}>{item.item}</Option>)}
                         </Select>)}
                     </FormItem>
-        
+
                     <FormItem label="单笔限额" hasFeedback>
                     <Row gutter={8}>
                         <Col span={18}>
@@ -203,16 +201,16 @@ export default Form.create()( class extends BaseContainer {
                         <Col span={4}>元</Col>
                     </Row>
                     </FormItem>
-        
+
                     <FormItem>
                         <Button type="primary" htmlType="submit"> 提交 </Button>
                     </FormItem>
-                    
+
                 </Form>
             </div>
-            
+
         )
-        
+
     }
 } )
 

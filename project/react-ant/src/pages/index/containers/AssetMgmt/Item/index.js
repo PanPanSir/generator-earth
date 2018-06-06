@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Form } from 'antd'
 
 import combineContainer from  'ROOT_SOURCE/base/CompConjunction'

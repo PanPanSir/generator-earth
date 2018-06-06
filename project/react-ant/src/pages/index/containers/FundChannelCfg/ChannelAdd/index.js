@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { Button,Form } from 'antd'
-import { Link} from 'react-router-dom'
+import { Form } from 'antd'
 
 
 import combineContainer from 'ROOT_SOURCE/base/CompConjunction'
@@ -19,7 +18,7 @@ ListForm = Form.create()(ListForm)
 
 
 export default class extends Component {
-    constructor (props) {   
+    constructor (props) {
         super(props)
         this.state = {
             params: [],
@@ -29,16 +28,16 @@ export default class extends Component {
         let arr = this.state.params.concat();
         let newParam = {
             assetId :param.assetName.key,
-            assetName :param.assetName.label, 
+            assetName :param.assetName.label,
             assetPrdId :param.assetPrdName.key,
             assetPrdName :param.assetPrdName.label,
-            funderId : param.funderName.key, 
-            funderName :param.funderName.label, 
+            funderId : param.funderName.key,
+            funderName :param.funderName.label,
             funderPrdId : param.funderPrdName.key,
             funderPrdName :param.funderPrdName.label
         }
         arr.push(newParam);
-        
+
         this.setState({params:arr})
     }
     updateTableAdd=(param)=>{
