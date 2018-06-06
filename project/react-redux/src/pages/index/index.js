@@ -10,7 +10,7 @@ import createHashHistory from 'history/lib/createHashHistory'
 import { IndexRedirect,
     Route,
     Router,
-    Redirect } from 'react-router';
+    Redirect } from 'react-router-dom';
 // import containers
 import App from './containers/App'
 import Home from './containers/Home'

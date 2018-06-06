@@ -1,7 +1,6 @@
 // //import base&&tools
 import 'whatwg-fetch'
 import 'scss_mixin/reset.scss' //reset 样式
-import '../../static/app.scss' // common 样式
 import 'tools/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
