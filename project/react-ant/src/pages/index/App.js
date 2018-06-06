@@ -9,12 +9,12 @@ import AsyncBundle from 'ROOT_SOURCE/base/AsyncBundle'
 import './App.scss'
 
 
-import Home from 'ROOT_SOURCE/containers/Home/'
+import Home from 'INDEX_ROOT_SOURCE/containers/Home/'
 
 
 //1
 const AssetMgmtAsync = () => import(
-    'ROOT_SOURCE/containers/AssetMgmt/' /* webpackChunkName:"AssetMgmt" */
+    'INDEX_ROOT_SOURCE/containers/AssetMgmt/' /* webpackChunkName:"AssetMgmt" */
 )
 const AssetMgmt = (props) => (
     <AsyncBundle load={AssetMgmtAsync}>
@@ -25,7 +25,7 @@ const AssetMgmt = (props) => (
 
 //2
 const AssetProdMgmtAsync = () => import(
-    'ROOT_SOURCE/containers/AssetProdMgmt/' /* webpackChunkName:"AssetProdMgmt" */
+    'INDEX_ROOT_SOURCE/containers/AssetProdMgmt/' /* webpackChunkName:"AssetProdMgmt" */
 )
 const AssetProdMgmt = (props) => (
     <AsyncBundle load={AssetProdMgmtAsync}>
@@ -36,7 +36,7 @@ const AssetProdMgmt = (props) => (
 
 //3
 const FundChannelCfgAsync = () => import(
-    'ROOT_SOURCE/containers/FundChannelCfg/' /* webpackChunkName:"FundChannelCfg" */
+    'INDEX_ROOT_SOURCE/containers/FundChannelCfg/' /* webpackChunkName:"FundChannelCfg" */
 )
 const FundChannelCfg = (props) => (
     <AsyncBundle load={FundChannelCfgAsync}>
@@ -60,24 +60,24 @@ const { SubMenu, Item } = Menu;
  **/
 
 class App extends Component {
-    
+
 
     render () {
-        
+
         let totalPath = this.props.location.pathname
         let prefixPath = totalPath.match(/^\/[^/]*/)[0]
-        
+
         let globalLoading = this.props.globalLoading
-        
+
         return (
             <Spin spinning={globalLoading} style={{ maxHeight: window.innerHeight }}>
             <Layout style={{ minHeight: '100vh' }}>
-            
+
                 <Sider collapsible>
                     <div className="logo">LOGO</div>
                     <Menu theme="dark"
                         defaultSelectedKeys={['/']}
-                        defaultOpenKeys={['/Asset','/Funder']}                     
+                        defaultOpenKeys={['/Asset','/Funder']}
                         mode="inline"
                         selectedKeys={[prefixPath]}
                         >
@@ -86,7 +86,7 @@ class App extends Component {
                             <span>首页</span>
                             <Link to="/"></Link>
                         </Item>
-                        
+
                         <SubMenu key="/Asset" title={<span><Icon type="book"/>资产方</span>}>
                             <Item key="/AssetMgmt">
                                 <span>资产方管理</span>
@@ -101,11 +101,11 @@ class App extends Component {
                                 <Link to="/FundChannelCfg"></Link>
                             </Item>
                         </SubMenu>
-                        
+
                     </Menu>
                 </Sider>
-                
-                
+
+
                 <Layout>
                     <Header style={{ background: '#fff', textAlign: 'center' }}>
                         <h1>58金融</h1>
@@ -114,18 +114,18 @@ class App extends Component {
                         <Switch>
                             {/* 首页 */}
                             <Route exact path="/" component={Home}/>
-                            
+
                             {/* 资产方管理 */}
                             <Route path="/AssetMgmt" component={AssetMgmt}/>
                             {/* 产品管理 */}
                             <Route path="/AssetProdMgmt" component={AssetProdMgmt}/>
                             {/* 资金通道配置 */}
                             <Route path="/FundChannelCfg" component={FundChannelCfg}/>
-                            
+
                         </Switch>
                     </Content>
                 </Layout>
-            
+
             </Layout>
             </Spin>
         )

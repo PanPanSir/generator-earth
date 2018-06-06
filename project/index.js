@@ -19,7 +19,8 @@ module.exports = class extends Generator {
 
             pkgJSON = require(path.resolve(process.cwd(), 'package.json'));
 
-        } catch (e) { }
+        } catch (e) {
+        }
 
         if (!pkgJSON.author || typeof pkgJSON.author == 'string') {
 
@@ -79,7 +80,7 @@ module.exports = class extends Generator {
                 name: 'H5',
                 value: 'h5'
 
-            },{
+            }, {
 
                 name: 'PC',
                 value: 'pc'
@@ -99,7 +100,19 @@ module.exports = class extends Generator {
                 name: 'React',
                 value: 'react'
 
-            }]
+            }],
+            when: answer => answer.projectType === 'h5'
+
+        }, {
+
+            name: 'frameType',
+            message: '框架选型',
+            type: 'list',
+            choices: [{
+                name: 'React-ant',
+                value: 'react-ant'
+            }],
+            when: answer => answer.projectType === 'pc'
 
         }, {
 
@@ -141,7 +154,7 @@ module.exports = class extends Generator {
             message: '是否使用 redux',
             type: 'confirm',
             default: false,
-            when: answer => answer.frameType.indexOf('react') >= 0
+            when: answer => (answer.projectType === 'h5' && answer.frameType.indexOf('react') >= 0)
 
         }, {
 
@@ -208,7 +221,7 @@ module.exports = class extends Generator {
         });
     }
 
-    configuring () {
+    configuring() {
 
         this.sourceRoot(path.join(__dirname, this.frameType));
 
@@ -220,19 +233,21 @@ module.exports = class extends Generator {
         let outPutUrl = this.createRoot ? this.name + '/' : './';
         let resetCss = this.projectType === 'h5' ? 'reset.scss' : 'reset_pc.scss';
 
+        let tplFile = '';
+        let tplPath = '';
+
         switch (this.frameType) {
 
             case 'react':
             case 'react-latest':
 
-                let tplFile = '';
-                if(this.useRedux){
+                if (this.useRedux) {
                     tplFile = `${this.frameType}-redux`;
                 } else {
                     tplFile = `${this.frameType}`;
                 }
 
-                let tplPath = this.templatePath(`../${tplFile}`);
+                tplPath = this.templatePath(`../${tplFile}`);
                 this.fs.copyTpl(
                     tplPath,
                     outPutUrl,
@@ -276,6 +291,48 @@ module.exports = class extends Generator {
                 );
 
                 break;
+
+            case 'react-ant':
+
+                if (this.useRedux) {
+                    tplFile = `${this.frameType}-redux`;
+                } else {
+                    tplFile = `${this.frameType}`;
+                }
+
+                tplPath = this.templatePath(`../${tplFile}`);
+                this.fs.copyTpl(
+                    tplPath,
+                    outPutUrl,
+                    {
+                        name: this.name,
+                        author: this.author,
+                        frameType: this.frameType,
+                        email: this.email,
+                        version: this.version,
+                        desc: this.desc,
+                        groupName: this.groupName,
+                        resetCss: '',
+                        flexibleStr: ''
+                    }
+                );
+
+                this.fs.copyTpl(
+                    this.templatePath(`../_gitignore`),
+                    outPutUrl + '.gitignore'
+                );
+                this.fs.copyTpl(
+                    this.templatePath(`../_editorconfig`),
+                    outPutUrl + '.editorconfig'
+                );
+                this.fs.copyTpl(
+                    this.templatePath(`../_babelrc`),
+                    outPutUrl + '.babelrc'
+                );
+
+
+                break;
+
 
             default:
 

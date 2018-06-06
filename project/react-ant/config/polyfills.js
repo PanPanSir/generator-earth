@@ -5,7 +5,9 @@ if (typeof Promise === 'undefined') {
   // inconsistent state due to an error, but it gets swallowed by a Promise,
   // and the user has no idea what causes React's erratic future behavior.
   require('promise/lib/rejection-tracking').enable();
-  window.Promise = require('promise/lib/es6-extensions.js');
+  //window.Promise = require('promise/lib/es6-extensions.js');
+  //promise/lib/es6-extensions.js低版本UC上有问题，替换成pinkie-promise
+  window.Promise = require('pinkie-promise');
 }
 
 // fetch() polyfill for making API calls.

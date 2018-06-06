@@ -1,5 +1,5 @@
 import store from './store'
-import { GLOBAL_LOADING } from 'ROOT_SOURCE/actions/framework'
+import { GLOBAL_LOADING } from 'INDEX_ROOT_SOURCE/actions/framework'
 
 
 

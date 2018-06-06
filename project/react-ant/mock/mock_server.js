@@ -11,7 +11,7 @@ const PORT = 8004;
 
 
 const getMockFileFullPathWithoutDotOrSuffix = req => (
-    path.join( __dirname, '../mock', URL.parse(req.url).pathname + '.' + req.method.toLowerCase() )
+    path.join( __dirname, URL.parse(req.url).pathname + '.' + req.method.toLowerCase() )
 )
 
 
@@ -37,7 +37,7 @@ const isFormUrlencode = req => (
 
 /*
  * return:
- * 
+ *
 { pageSize: 10,
   pageNo: 3,
   assetCode: '',
@@ -46,11 +46,11 @@ const isFormUrlencode = req => (
   total: 22 }
  */
 const parseParams = req => {
-    
+
     if (req.method.toLowerCase()==='get') {
-        /* 
+        /*
          * urlObj
-         * 
+         *
             search: '?a=b',
             query: 'a=b',
             pathname: '/asset/getAsset',
@@ -59,14 +59,14 @@ const parseParams = req => {
          */
         let urlObj = URL.parse(req.url)
         let queryObj = querystring.parse(urlObj.query)
-        
+
         return new Promise(function(resolve, reject) {
             resolve(queryObj)
         })
-    
-    
+
+
     } else if (req.method.toLowerCase()==='post') {
-        
+
         return new Promise(function(resolve, reject) {
             let data = ''
             req.on('data', function (chunk) {
@@ -75,19 +75,19 @@ const parseParams = req => {
             req.on('end', function () {
                 try {
                     let queryObj = isFormUrlencode(req) ?
-                        
+
                         // case x-www-form-urlencoded
                         querystring.parse(decodeURI(data)) :
                         // otherwise
                         JSON.parse(decodeURI(data))
-                    
+
                     resolve(queryObj)
                 } catch (e) {
                     reject(e)
                 }
             })
         })
-        
+
     }
 }
 
@@ -97,22 +97,22 @@ const parseParams = req => {
 
 http.createServer(async (req, res) => {
     if ( req.url.indexOf('favicon.ico') != -1 ) { return ''; }
-    
-    
+
+
     // 必须前置，否则中文乱码
     res.setHeader('Content-Type', 'application/json; charset="utf-8')
-    
-    
+
+
     // 获取mock文件的全路径，不带后缀
     const filePathWithoutSuffix = getMockFileFullPathWithoutDotOrSuffix(req)
-    
-    
+
+
     // 如果是.js的话，执行该文件并返回结果
     if ( fileExists(filePathWithoutSuffix + '.js') ) {
-        
+
         // 重新加载执行.js
         empty(require.cache)
-        
+
         try {
             let params = await parseParams(req)
             let r = require(filePathWithoutSuffix)(req, res, params)
@@ -123,14 +123,14 @@ http.createServer(async (req, res) => {
             res.statusCode = 404
             res.end(e.stack)
         }
-        
+
         return;
     }
-    
-    
+
+
     // 如果是.json的话，读取并pipe(res)
     if ( fileExists(filePathWithoutSuffix + '.json') ) {
-        
+
         fs
             .createReadStream(filePathWithoutSuffix + '.json', {encoding: 'utf8'})
             .on('finish', () => {
@@ -141,11 +141,11 @@ http.createServer(async (req, res) => {
                 res.end(e.stack)
             })
             .pipe(res)
-        
+
         return;
     }
-    
-    
+
+
     res.statusCode = 404
     res.end(`${filePathWithoutSuffix}路径的没有对应的mock文件`)
 })
