@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button, Form, Select } from 'antd'
+import { Input, Button, Form } from 'antd'
 import BaseFormContainer from 'ROOT_SOURCE/base/BaseFormContainer'
 
 const FormItem = Form.Item
