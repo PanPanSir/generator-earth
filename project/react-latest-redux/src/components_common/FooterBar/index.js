@@ -2,11 +2,7 @@ import React from 'react'
 import { NavLink, withRouter } from 'react-router-dom'
 import './index.scss';
 
-const FooterBar = ({
-                       // match,
-                       // location,
-                       // history
-                   }) => {
+const FooterBar = (/*{match, location, history}*/) => {
 
     return (
 
