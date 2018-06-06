@@ -5,13 +5,13 @@ const externals = require('./externals');
 module.exports = {
     // todo: 只支持entry.vendor, plugins，其他的字段都会被忽略用默认的
     entry: {
-        vendor: ['query-string', 'prop-types', 'redux', 'react-redux', 'lodash', 'react-router-dom'],
+        vendor: ['react-router-dom'],
     },
     resolve: {
         alias: alias
     },
     output: {
-        publicPath: '//j1.58cdn.com.cn/jinrong/finance-pay',
+        publicPath: '//j1.58cdn.com.cn/jinrong/xxx',
         // publicPath: '.',
         // 如果不同资源用不同的cdn，则可以采用对象形式
         // publicPath: {
