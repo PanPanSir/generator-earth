@@ -1,6 +1,6 @@
 import React from 'react'
-import style from './My.scss'
+import './index.scss'
 
-const My = () => <div className={style.root}>{`hello world im async chunk js`}</div>
+const My = () => <div className='page-my'>{`hello world im async chunk js`}</div>
 
 export default My

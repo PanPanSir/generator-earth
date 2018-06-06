@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
-import style from './FooterBar.scss';
+import './index.scss';
 import cn from 'classnames';
 
 const ROUTE_MAP = {
@@ -13,7 +13,7 @@ const FooterBar = ({match, location, history}) => {
 
     const getActiveTabClassName = (tabName) => {
         if (location.pathname === tabName) {
-            return style["tab-selected"]
+            return "tab-selected"
         }
 
         return ''
@@ -22,11 +22,11 @@ const FooterBar = ({match, location, history}) => {
 
     return (
 
-    	<div className={style.wrapper}>
+    	<div className='m-footer-bar'>
 
-    		<Link to='/home' className={cn(style.tab, getActiveTabClassName(ROUTE_MAP.home))}>tab1</Link>
-        	<Link to='/site' className={cn(style.tab, getActiveTabClassName(ROUTE_MAP.site))}>tab2</Link>
-        	<Link to='/my' className={cn(style.tab, getActiveTabClassName(ROUTE_MAP.my))}>tab3</Link>
+    		<Link to='/home' className={cn('tab', getActiveTabClassName(ROUTE_MAP.home))}>tab1</Link>
+        	<Link to='/site' className={cn('tab', getActiveTabClassName(ROUTE_MAP.site))}>tab2</Link>
+        	<Link to='/my' className={cn('tab', getActiveTabClassName(ROUTE_MAP.my))}>tab3</Link>
 
     	</div>
 

@@ -1,12 +1,12 @@
 import React from 'react'
-import style from './ListItem.scss'
+import './index.scss'
 import { Link } from 'react-router-dom'
 
 const ListItem = ({title, id}) => {
 
 	return (
 
-		<Link className={style.wrapper} to={`/site/${id}?ts=123`}>{title}</Link>
+		<Link className='list-item' to={`/site/${id}?ts=123`}>{title}</Link>
 
 	)
 

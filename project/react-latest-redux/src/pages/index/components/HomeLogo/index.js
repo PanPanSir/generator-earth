@@ -1,10 +1,11 @@
 import React from 'react'
-import style from './HomeLogo.scss'
 import logo from './img/logo.svg'
+
+import './index.scss'
 
 const HomeLogo = () => {
 
-	return <img src={logo} className={style.wrapper} alt="logo" />
+	return <img src={logo} className='home-logo' alt="logo" />
 
 };
 

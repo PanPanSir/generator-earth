@@ -40,9 +40,9 @@ module.exports = {
         //     files: ['index.html'] // 适用于哪个文件
         // }
     },
-    cssModule: {
-        exclude: ['src/static', 'node_modules'],
-        name: '[name]__[local]-[hash:base64:5]'
-    }
+    // cssModule: {
+    //     exclude: ['src/static', 'node_modules'],
+    //     name: '[name]__[local]-[hash:base64:5]'
+    // }
     // plugins: []
 };
