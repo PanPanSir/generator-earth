@@ -9,7 +9,7 @@ class BundleLoader extends React.PureComponent {
     };
     static defaultProps =  {
         mod: null,
-        loadingComp: <p>加载中...</p>
+        loadingComp: null
     };
 
     state = {
