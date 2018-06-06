@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 import BaseTableContainer from 'ROOT_SOURCE/base/BaseTableContainer'
 
@@ -13,21 +13,21 @@ const payMtdMapping = {
 };
 
 export default class extends BaseTableContainer {
-    
+
     getTitle = () => (
         ``
     )
-    
-    
+
+
     getRowKey() {
         return 'id'
     }
-    
-    
+
+
     getColumns() {
         if (this._columns) return this._columns;
-        
-        let encode = window.encodeURIComponent
+
+        // let encode = window.encodeURIComponent
 
         return this._columns = [{
             title: '资产方编号',

@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 
 import BaseTableContainer from 'ROOT_SOURCE/base/BaseTableContainer'
 import request from 'ROOT_SOURCE/utils/request'
-import {Divider, Modal, message} from 'antd'
+import {Divider, Modal} from 'antd'
 
 const confirm = Modal.confirm;
 export default class extends BaseTableContainer {
-    
+
     getTitle = () => (
         ``
     )
-    
-    
+
+
     getRowKey() {
         return 'id'
     }
@@ -21,12 +21,12 @@ export default class extends BaseTableContainer {
         this.deleteConfirm = this.deleteConfirm.bind(this)
     }
     deleteDate = async (index) =>{
-        let { tableData, updateTable } = this.props;  
-        console.log(tableData)    
+        let { tableData, updateTable } = this.props;
+        console.log(tableData)
         await request.post('/assetFunderRel/deleteConfigur', {id:index})
         tableData.dataSource.splice(index, 1);
         updateTable(tableData.dataSource);
-        
+
     }
      // 删除操作
     deleteConfirm = (id, index) => {
@@ -45,9 +45,9 @@ export default class extends BaseTableContainer {
 
     getColumns() {
         if (this._columns) return this._columns;
-        
-        let encode = window.encodeURIComponent
-        let dataS = this.props.tableData.dataSource
+
+        // let encode = window.encodeURIComponent
+        // let dataS = this.props.tableData.dataSource
         return this.columns = [
             {
                 title: '资产方编号',
@@ -101,7 +101,7 @@ export default class extends BaseTableContainer {
                 )
             }
         ];
-        
+
     }
 
 }

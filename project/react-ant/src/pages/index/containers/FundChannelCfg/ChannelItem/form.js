@@ -1,10 +1,10 @@
 import React from 'react'
-import {  Button, Form, Input,Select } from 'antd'
+import {  Button, Form, Select } from 'antd'
 
 import BaseContainer from 'ROOT_SOURCE/base/BaseContainer'
 
 import {sleep} from 'ROOT_SOURCE/utils/index'
-import Rules from 'ROOT_SOURCE/utils/ValidateRules'
+// import Rules from 'ROOT_SOURCE/utils/ValidateRules'
 import request from 'ROOT_SOURCE/utils/request'
 
 const FormItem = Form.Item
@@ -21,31 +21,31 @@ export default class extends BaseContainer {
         e && e.preventDefault()
 
         const { form } = this.props
-        
+
         form.validateFieldsAndScroll(async (err, values) => {
             if (err) {
                 return;
             }
-            
+
             // 提交表单最好新一个事务，不受其他事务影响
             await sleep(0)
-            
+
             let _formData = { ...form.getFieldsValue() }
-            
+
             // action
             await request.post('/assetFunderRel/updateConfigur', _formData)
-                
+
             // 提交后返回list页
             this.props.history.push('/FundChannelCfg/list')
         })
-        
+
         // 重置table
         this.props.resetTable && this.props.resetTable()
-        
+
         // 提交表单最好新一个事务，不受其他事务影响
         setTimeout( () => {
             let _formData = { ...this.props.form.getFieldsValue() }
-            
+
             // action-更新
             this.props.updateTable && this.props.updateTable(_formData)
         }, 0 )
@@ -108,7 +108,7 @@ export default class extends BaseContainer {
             },
         }
 
-  
+
         return (<div className="ui-background">
 
             <Form layout="horizontal" style={{ maxWidth: '400px'}} onSubmit={this.submitForm}>
@@ -118,8 +118,8 @@ export default class extends BaseContainer {
                     rules: [{ required: true }],
                     initialValue: assetName || ''
                     })(<Select placeholder="请选择资金方名称" onFocus={this.getAssetDict} onSelect={this.getAssetPrdDict}>
-                        {this.state.assetNames.map((item) => 
-                            <Option value={item.id} key={item.id}>{item.item}</Option>)}   
+                        {this.state.assetNames.map((item) =>
+                            <Option value={item.id} key={item.id}>{item.item}</Option>)}
                     </Select>)}
                 </FormItem>
 
@@ -128,33 +128,33 @@ export default class extends BaseContainer {
                     rules: [{ required: true }],
                     initialValue: assetPrdName || ''
                     })(<Select placeholder="请选择资金方产品">
-                        {this.state.assetPrdNames.map((item) => 
-                            <Option value={item.id} key={item.id}>{item.item}</Option>)}                
+                        {this.state.assetPrdNames.map((item) =>
+                            <Option value={item.id} key={item.id}>{item.item}</Option>)}
                         </Select>)}
                 </FormItem>
 
                 <FormItem {...formItemLayout} label="资金方名称">
                     {getFieldDecorator('funderName', {
-                    rules: [{ required: true }],            
+                    rules: [{ required: true }],
                     initialValue: funderName || ''
                     })(<Select placeholder="请选择资金方名称" onFocus={this.getFunderDict} onSelect={this.getFunderPrdDict}>
-                        {this.state.funderNames.map((item) => 
-                            <Option value={item.id} key={item.id}>{item.item}</Option>)}                
+                        {this.state.funderNames.map((item) =>
+                            <Option value={item.id} key={item.id}>{item.item}</Option>)}
                         </Select>)}
                 </FormItem>
 
                 <FormItem {...formItemLayout} label="资金方产品" hasFeedback>
                     {getFieldDecorator('funderPrdName', {
-                    rules: [{ required: true }],            
+                    rules: [{ required: true }],
                     initialValue: funderPrdName || ''
                     })(<Select placeholder="请选择资金方名称" >
-                        {this.state.funderPrdNames.map((item) => 
-                            <Option value={item.id} key={item.id}>{item.item}</Option>)}                 
+                        {this.state.funderPrdNames.map((item) =>
+                            <Option value={item.id} key={item.id}>{item.item}</Option>)}
                         </Select>)}
 
                 </FormItem>
 
-                <FormItem 
+                <FormItem
                     wrapperCol={{
                         xs: { span: 24, offset: 0 },
                         sm: { span: 16, offset: 8 },

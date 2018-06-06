@@ -53,11 +53,11 @@ export default class extends React.Component {
     }
 
     render() {
-        const { label, form, startKey, startVal, endKey, endVal } = this.props;
+        const { form, startKey, startVal, endKey, endVal } = this.props;
         const { startValue, endValue, endOpen } = this.state;
-        
+
         const dateShowFormat = this.props.dateShowFormat || "YYYY-MM-DD HH:mm:ss";
-        
+
         return (
             <div>
                 <Col span={11}>

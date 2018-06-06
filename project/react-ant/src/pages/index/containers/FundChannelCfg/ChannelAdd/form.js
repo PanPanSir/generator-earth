@@ -3,7 +3,7 @@ import {  Button, Form,Select } from 'antd'
 
 import BaseContainer from 'ROOT_SOURCE/base/BaseContainer'
 
-import Rules from 'ROOT_SOURCE/utils/ValidateRules'
+// import Rules from 'ROOT_SOURCE/utils/ValidateRules'
 import request from 'ROOT_SOURCE/utils/request'
 
 const FormItem = Form.Item
@@ -14,17 +14,17 @@ export default Form.create()(class extends BaseContainer {
         e && e.preventDefault()
 
         const { form } = this.props
-        
+
         form.validateFieldsAndScroll(async (err, values) => {
             if (err) {
                 return;
-            }        
+            }
         let _formData = { ...form.getFieldsValue() }
         // 数据更新
         this.props.updateFormTable && this.props.updateFormTable(_formData)
         // 清空form数据
         this.props.form.resetFields()
-            
+
         })
     }
     constructor(props) {
@@ -60,7 +60,7 @@ export default Form.create()(class extends BaseContainer {
             this.setState({funderNames: res.data});
         }
     }
-    
+
     getFunderPrdDict = async (value) => {
         let res = await request.get('/funder/getFunderPrdDict',{funderId:value});
         if (typeof res === 'object' && res.data) {
@@ -69,7 +69,7 @@ export default Form.create()(class extends BaseContainer {
     }
 
     render() {
-        let { form, formData } = this.props
+        let { form } = this.props
         let { getFieldDecorator } = form
         const formItemLayout = {
             labelCol: {
@@ -82,7 +82,7 @@ export default Form.create()(class extends BaseContainer {
             },
         }
 
-  
+
         return (<div className="ui-background">
 
             <Form layout="horizontal" style={{ maxWidth: '400px'}} onSubmit={this.submitForm}>
@@ -90,11 +90,11 @@ export default Form.create()(class extends BaseContainer {
                 <FormItem {...formItemLayout}label="资产方名称">
                     {getFieldDecorator('assetName', {
                         rules: [{ required: true }],
-                    })(<Select placeholder="请选择资金方名称" 
+                    })(<Select placeholder="请选择资金方名称"
                         labelInValue={true}
                         onSelect={this.getAssetPrdDict}>
-                        {this.state.assetNames.map((item) => 
-                            <Option value={item.id} key={item.id}>{item.item}</Option>)}   
+                        {this.state.assetNames.map((item) =>
+                            <Option value={item.id} key={item.id}>{item.item}</Option>)}
                 </Select>)}
                 </FormItem>
 
@@ -102,34 +102,34 @@ export default Form.create()(class extends BaseContainer {
                     {getFieldDecorator('assetPrdName', {
                         rules: [{ required: true }],
                     })(<Select placeholder="请选择资金方产品" labelInValue={true}>
-                        {this.state.assetPrdNames.map((item) => 
-                            <Option value={item.id} key={item.id}>{item.item}</Option>)}                
+                        {this.state.assetPrdNames.map((item) =>
+                            <Option value={item.id} key={item.id}>{item.item}</Option>)}
                     </Select>)}
                 </FormItem>
 
                 <FormItem {...formItemLayout} label="资金方名称">
                     {getFieldDecorator('funderName', {
-                        rules: [{ required: true }],            
-                    })(<Select placeholder="请选择资金方名称" 
+                        rules: [{ required: true }],
+                    })(<Select placeholder="请选择资金方名称"
                         labelInValue={true}
-                        onFocus={this.getFunderDict} 
+                        onFocus={this.getFunderDict}
                         onSelect={this.getFunderPrdDict}>
-                        {this.state.funderNames.map((item) => 
-                            <Option value={item.id} key={item.id}>{item.item}</Option>)}                
+                        {this.state.funderNames.map((item) =>
+                            <Option value={item.id} key={item.id}>{item.item}</Option>)}
                     </Select>)}
                 </FormItem>
 
                 <FormItem {...formItemLayout} label="资金方产品" hasFeedback>
                     {getFieldDecorator('funderPrdName', {
-                        rules: [{ required: true }],            
+                        rules: [{ required: true }],
                     })(<Select placeholder="请选择资金方名称" labelInValue={true}>
-                        {this.state.funderPrdNames.map((item) => 
-                            <Option value={item.id} key={item.id}>{item.item}</Option>)}                 
+                        {this.state.funderPrdNames.map((item) =>
+                            <Option value={item.id} key={item.id}>{item.item}</Option>)}
                     </Select>)}
 
                 </FormItem>
 
-                <FormItem 
+                <FormItem
                     wrapperCol={{
                         xs: { span: 24, offset: 0 },
                         sm: { span: 16, offset: 8 },
