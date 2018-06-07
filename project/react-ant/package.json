@@ -31,10 +31,7 @@
         "redux-thunk": "^2.2.0"
     },
     "devDependencies": {
-        "earth-scripts": "^0.2.0",
-        "object-assign": "4.1.1",
-        "promise": "8.0.1",
-        "whatwg-fetch": "2.0.3"
+        "earth-scripts": "^0.2.3"
     },
     "scripts": {
         "start": "earth-scripts start",
