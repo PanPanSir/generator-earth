@@ -45,7 +45,7 @@
             "src/**/*.{js,jsx}"
         ],
         "setupFiles": [
-            "<rootDir>/config/polyfills.js"
+            "<rootDir>/node_modules/earth-scripts/config/polyfills.js"
         ],
         "testMatch": [
             "<rootDir>/src/**/__tests__/**/*.js?(x)",
