@@ -11,16 +11,9 @@ import {
     HashRouter as Router,
 } from 'react-router-dom'
 
-// // import containers
+// import containers
 import App from './containers/App'
 import MainRouter from './containers/MainRouter'
-//
-// import 'lm-ui-react'
-//
-// import List from './containers/Site/list'
-// import Detail from './containers/Site/detail'
-//
-//
 
 const rootElement = document.getElementById('root');
 

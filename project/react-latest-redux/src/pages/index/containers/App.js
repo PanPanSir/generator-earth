@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Loading from 'lm-loading'
+
 class App extends Component {
 
 
@@ -22,21 +24,7 @@ class App extends Component {
 
         return (
 
-            <div style={{
-                display: this.props.showState ? 'flex' : 'none',
-                justifyContent: 'center',
-                alignItems: 'center',
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                zIndex: 100,
-                height: '100%',
-                width: '100%',
-                background: 'rgba(0,0,0,.3)',
-                textAlign: 'center',
-            }}>
-                loading...
-            </div>
+            <Loading isShow={ this.props.showState }/>
 
 
         )

@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
-import request from 'api/request'
-import { LoadingContext } from '../loading-context'
-
-
 import {
     Route,
     Switch,
 } from 'react-router-dom'
 
+import request from 'api/request'
+
+
+import {LoadingContext} from 'commons/LoadingContext';
 // bundleLoader
-import Bundle from 'commons/BundleLoader'
+import BundleLoader from 'commons/BundleLoader'
+// propsRoute
+import PropsRoute from "commons/PropsRoute";
+
 
 import List from './list'
-import PropsRoute from "../../../../components_common/PropsRoute";
 const Detail = () => import('./detail' /* webpackChunkName:"site_detail" */);
 
 
@@ -74,7 +76,6 @@ class Site extends Component {
         const { match } = this.props;
         const { listData } = this.state;
 
-        // return cloneChildren
         return (
             <Switch>
                 <PropsRoute
@@ -88,11 +89,7 @@ class Site extends Component {
                 <Route
                     path={`${match.path}/:id`}
                     render={
-                        (props) => (
-                            <Bundle load={Detail}>
-                                {(Mod) => (<Mod {...props}/>)}
-                            </Bundle>
-                        )
+                        (props) => BundleLoader(Detail, props)
                     }
                 />
             </Switch>

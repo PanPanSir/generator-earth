@@ -1,11 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-class BundleLoader extends React.PureComponent {
+
+/**
+ *
+ * @param Comp 需要异步的组件
+ * @param props
+ * @param LoadingComp Loading组件，不传则没有loading效果
+ * @return {*}
+ * @constructor
+ */
+const BundleLoader = (Comp, props, LoadingComp) => {
+    return (
+        <Bundle load={ Comp } loadingComp={ LoadingComp || null }>
+            {(Mod) => (<Mod {...props}/>)}
+        </Bundle>
+    )
+};
+
+class Bundle extends React.PureComponent {
 
     static propTypes = {
-        mod: PropTypes.node,
-        loadingComp : PropTypes.node
+        mod: PropTypes.node, // 异步加载的组件
+        loadingComp : PropTypes.node  // loading组件
     };
     static defaultProps =  {
         mod: null,
@@ -50,6 +67,7 @@ class BundleLoader extends React.PureComponent {
 	}, "page2");
 }
         * */
+
 
         props.load().then((mod) => {
             this._isMounted && this.setState({

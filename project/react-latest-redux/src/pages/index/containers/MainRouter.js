@@ -13,21 +13,12 @@ import FooterBar from 'commons/FooterBar'
 // scrollToTop
 import ScrollToTop from 'commons/ScrollToTop'
 // bundleLoader
-import Bundle from 'commons/BundleLoader'
+import BundleLoader from 'commons/BundleLoader'
 
 
-
-const My = () => import('./My' /* webpackChunkName:"My" */);
-
-const bundleLoader = (Comp, props) => {
-    return (
-        <Bundle load={ Comp } loadingComp={ <p>loading..</p> }>
-            {(Mod) => (<Mod {...props}/>)}
-        </Bundle>
-    )
-};
-
-
+// 异步加载文件 参考文档 https://webpack.js.org/guides/code-splitting/#dynamic-imports
+// 参数中的注释部分不建议删除，原因请看上述文档
+const My = () => import( './My' /* webpackChunkName:"My" */ );
 
 
 class MainRouter extends React.PureComponent {
@@ -42,7 +33,7 @@ class MainRouter extends React.PureComponent {
                     <Route path='/site' component={Site}/>
                     <Route path='/my'
                            render={
-                               (props) => bundleLoader(My, props)
+                               (props) => BundleLoader(My, props)
                            }/>
 
                     <Redirect to='/home'/>

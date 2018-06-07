@@ -21,8 +21,7 @@
         "classnames": "^2.2.5",
         "core-js": "^2.5.7",
         "history": "^4.7.2",
-        "json-server": "^0.12.0",
-        "pinkie-promise": "^2.0.1",
+        "lm-loading": "^0.2.1",
         "prop-types": "^15.5.10",
         "query-string": "^5.0.1",
         "raf": "^3.4.0",
@@ -32,8 +31,7 @@
         "react-redux": "^5.0.6",
         "redux": "^3.7.2",
         "redux-thunk": "^2.2.0",
-        "reselect": "^3.0.1",
-        "whatwg-fetch": "2.0.3"
+        "reselect": "^3.0.1"
     },
     "scripts": {
         "start": "earth-scripts start",
@@ -79,9 +77,7 @@
         "extends": "react-app"
     },
     "devDependencies": {
-        "earth-scripts": "^0.2.0",
-        "object-assign": "4.1.1",
-        "promise": "8.0.1"
+        "earth-scripts": "^0.2.3"
     },
     "proxy": "http://localhost:3001/"
 }

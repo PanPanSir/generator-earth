@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchListData } from '../../actions/list'
 
 import {
     Route,
@@ -8,10 +7,13 @@ import {
 } from 'react-router-dom'
 
 // bundleLoader
-import Bundle from 'commons/BundleLoader'
+import BundleLoader from 'commons/BundleLoader'
+// propsRoute
+import PropsRoute from "commons/PropsRoute";
+
+import { fetchListData } from '../../actions/list'
 
 import List from './list'
-import PropsRoute from "../../../../components_common/PropsRoute";
 const Detail = () => import('./detail' /* webpackChunkName:"site_detail" */);
 
 
@@ -60,11 +62,7 @@ class Site extends Component {
                 <Route
                     path={`${match.path}/:id`}
                     render={
-                        (props) => (
-                            <Bundle load={Detail}>
-                                {(Mod) => (<Mod {...props}/>)}
-                            </Bundle>
-                        )
+                        (props) => BundleLoader(Detail, props)
                     }
                 />
             </Switch>

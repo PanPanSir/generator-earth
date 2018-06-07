@@ -12,26 +12,14 @@ import {
 // scrollToTop
 import ScrollToTop from 'commons/ScrollToTop'
 // bundleLoader
-import Bundle from 'commons/BundleLoader'
+import BundleLoader from 'commons/BundleLoader'
 
 
 // 异步加载文件 参考文档 https://webpack.js.org/guides/code-splitting/#dynamic-imports
 // 参数中的注释部分不建议删除，原因请看上述文档
 const My = () => import( './My' /* webpackChunkName:"My" */ );
 
-/**
- * 异步加载loading加载
- * @param Comp Component组件
- * @param props router的props
- * @returns {*}
- */
-const bundleLoader = (Comp, props) => {
-    return (
-        <Bundle load={ Comp } loadingComp={ <p>loading..</p> }>
-            {(Mod) => (<Mod {...props}/>)}
-        </Bundle>
-    )
-};
+
 
 class MainRouter extends React.PureComponent {
     render() {
@@ -42,11 +30,7 @@ class MainRouter extends React.PureComponent {
                     <Route path='/site' component={Site}/>
                     <Route path='/my'
                            render={
-                               (props) => My().then(
-                                   (mod) => {
-                                       return mod.default ? mod.default : mod
-                                   }
-                               )
+                               (props) => BundleLoader(My, props)
                            }/>
 
                     <Redirect to='/home'/>

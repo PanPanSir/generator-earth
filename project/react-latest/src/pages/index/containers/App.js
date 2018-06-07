@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+
+import Loading from 'lm-loading'
+
 import FooterBar from 'commons/FooterBar'
-import {LoadingContext} from './loading-context';
+import {LoadingContext} from 'commons/LoadingContext';
+
 import MainRouter from './MainRouter';
 
 class App extends Component {
@@ -52,21 +56,7 @@ class App extends Component {
 
                 <FooterBar/>
 
-                <div style={{
-                    display: this.state.loadingShow ? 'flex' : 'none',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    zIndex: 100,
-                    height: '100%',
-                    width: '100%',
-                    background: 'rgba(0,0,0,.3)',
-                    textAlign: 'center',
-                }}>
-                    loading...
-                </div>
+                <Loading isShow={ this.state.loadingShow }/>
 
             </LoadingContext.Provider>
 
