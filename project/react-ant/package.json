@@ -32,7 +32,6 @@
     },
     "devDependencies": {
         "earth-scripts": "^0.2.0",
-        "lm-flexible": "^0.1.1",
         "object-assign": "4.1.1",
         "promise": "8.0.1",
         "whatwg-fetch": "2.0.3"
