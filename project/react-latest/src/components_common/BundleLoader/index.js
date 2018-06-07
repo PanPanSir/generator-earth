@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 class BundleLoader extends React.PureComponent {
 
     static propTypes = {
-        mod: PropTypes.node,
-        loadingComp : PropTypes.node
+        mod: PropTypes.node, //异步加载的组件
+        loadingComp : PropTypes.node //loading组件
     };
     static defaultProps =  {
         mod: null,
-        loadingComp: null
+        loadingComp: null //todo lm-loading
     };
 
     state = {
