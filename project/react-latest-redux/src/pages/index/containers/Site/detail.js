@@ -1,9 +1,10 @@
 import React from 'react'
-import qs from 'query-string'
+import { getRequestParams } from 'tools/utils'
+
 
 const Detail = ({match, location}) => {
 
-    const query = qs.parse(location.search);
+    const query = getRequestParams(location.search);
 
     return (
 

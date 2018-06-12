@@ -8,8 +8,6 @@ import {
 
 // bundleLoader
 import BundleLoader from 'commons/BundleLoader'
-// propsRoute
-import PropsRoute from "commons/PropsRoute";
 
 import { fetchListData } from '../../actions/list'
 
@@ -51,13 +49,10 @@ class Site extends Component {
         // return cloneChildren
         return (
             <Switch>
-                <PropsRoute
+                <Route
                     exact
                     path={`${match.path}`}
-                    component={ List }
-
-                    listData={ listData }
-
+                    render={routeProps => <List listData={listData} {...routeProps}/>}
                 />
                 <Route
                     path={`${match.path}/:id`}

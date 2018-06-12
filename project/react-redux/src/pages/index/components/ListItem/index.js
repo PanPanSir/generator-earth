@@ -1,6 +1,6 @@
 import React from 'react'
 import './index.scss'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 
 const ListItem = ({title, id}) => {
 

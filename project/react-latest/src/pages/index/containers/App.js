@@ -4,12 +4,6 @@ import FooterBar from 'commons/FooterBar'
 class App extends Component {
 
 
-    constructor (props) {
-
-        super(props);
-
-    }
-
 
     componentDidMount () {
 
@@ -31,8 +25,6 @@ class App extends Component {
         return (
 
             <div>
-
-                { this.props.children }
 
                 <FooterBar/>
 

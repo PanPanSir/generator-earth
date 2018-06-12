@@ -54,9 +54,10 @@ const rootElement = document.getElementById('root');
 ReactDOM.render(
 
     <Router>
-        <App>
-            <MainRouter />
-        </App>
+        <div>
+            <App/>
+            <MainRouter/>
+        </div>
     </Router>,
 
     rootElement
