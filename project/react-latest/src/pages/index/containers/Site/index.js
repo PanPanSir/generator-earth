@@ -1,17 +1,16 @@
 import React, { Component } from 'react'
 import {
     Route,
-    Switch,
+    Switch
 } from 'react-router-dom'
+
+import Loading from 'lm-loading'
 
 import request from 'api/request'
 
 
-import {LoadingContext} from 'commons/LoadingContext';
 // bundleLoader
 import BundleLoader from 'commons/BundleLoader'
-// propsRoute
-import PropsRoute from "commons/PropsRoute";
 
 
 import List from './list'
@@ -26,12 +25,14 @@ class Site extends Component {
         super(props);
         this.state = {
 
-            listData: []
+            listData: [],
+            loadingShow: false
 
         };
 
 
         this._isMounted = false;
+        this.loadingChangeHandle = this.loadingChangeHandle.bind(this);
 
     }
 
@@ -55,14 +56,22 @@ class Site extends Component {
 
     }
 
+    loadingChangeHandle (showState) {
+
+        this.setState({
+            loadingShow: showState
+        });
+
+    }
+
     fetchListData () {
 
-        this.props.loadingChangeHandle(true);
+        this.loadingChangeHandle(true);
 
         request.post('/test/aaa', {})
             .then((data) => {
 
-                this.props.loadingChangeHandle(false);
+                this.loadingChangeHandle(false);
 
                 this._isMounted && this.setState({ listData: data })
 
@@ -74,40 +83,28 @@ class Site extends Component {
     render () {
 
         const { match } = this.props;
-        const { listData } = this.state;
+        const { listData, loadingShow } = this.state;
 
         return (
-            <Switch>
-                <PropsRoute
-                    exact
-                    path={`${match.path}`}
-                    component={ List }
+            <div>
+                <Switch>
+                    <Route exact path={`${match.path}`} render={routeProps => {
+                        return <List listData={listData} />
+                    }}/>
+                    <Route
+                        path={`${match.path}/:id`}
+                        render={
+                            (props) => BundleLoader(Detail, props)
+                        }
+                    />
+                </Switch>
+                <Loading isShow={loadingShow} />
+            </div>
 
-                    listData={ listData }
-
-                />
-                <Route
-                    path={`${match.path}/:id`}
-                    render={
-                        (props) => BundleLoader(Detail, props)
-                    }
-                />
-            </Switch>
         )
 
     }
 
 }
 
-const SiteWithLoadingContext = (props) => {
-    return (
-        <LoadingContext.Consumer>
-            {({loadingChangeHandle}) => {
-                return <Site loadingChangeHandle={loadingChangeHandle} {...props}/>
-
-            }}
-        </LoadingContext.Consumer>
-    )
-}
-
-export default SiteWithLoadingContext
+export default Site

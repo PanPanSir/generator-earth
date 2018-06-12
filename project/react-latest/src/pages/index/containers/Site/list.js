@@ -9,7 +9,9 @@ class List extends Component {
     componentDidMount () {
 
         //回到之前浏览的位置
-        window.scrollTo(0, scrollSite)
+        window.scrollTo(0, scrollSite);
+
+        console.log(scrollSite);
 
     }
 

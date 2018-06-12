@@ -39,13 +39,13 @@
 ///             opacity: 1; }
 ///         25%,75% {
 ///             opacity: 0; } }
-///        
+///
 /// @example flash - 含参数:
 ///     scss file:
 ///     .example {
 ///         @include m-anim-flash((
-///             duration: 2s, 
-///             fill-mode: both, 
+///             duration: 2s,
+///             fill-mode: both,
 ///             name: m-flash-cus
 ///         ), true) {
 ///             0%,100%,50% {
@@ -56,7 +56,7 @@
 ///             }
 ///         };
 ///     }
-///     
+///
 ///     css file:
 ///     .example {
 ///         -webkit-animation-iteration-count: 1;
@@ -509,13 +509,13 @@
             @if ($custom) {
                 @content;
             } @else {
-                50% { 
-                    -webkit-transform: translateZ(-250px) rotateY(89deg); 
-                    opacity: .5; 
+                50% {
+                    -webkit-transform: translateZ(-250px) rotateY(89deg);
+                    opacity: .5;
                 }
-                100% { 
-                    -webkit-transform: translateZ(0) rotateY(0deg); 
-                    opacity: 1; 
+                100% {
+                    -webkit-transform: translateZ(0) rotateY(0deg);
+                    opacity: 1;
                 }
             }
         }
@@ -523,13 +523,13 @@
             @if ($custom) {
                 @content;
             } @else {
-                50% { 
-                    transform: translateZ(-250px) rotateY(89deg); 
+                50% {
+                    transform: translateZ(-250px) rotateY(89deg);
                     opacity: .5;
                 }
-                100% { 
-                    transform: translateZ(0) rotateY(0deg); 
-                    opacity: 1; 
+                100% {
+                    transform: translateZ(0) rotateY(0deg);
+                    opacity: 1;
                 }
             }
         }
@@ -554,13 +554,13 @@
             @if ($custom) {
                 @content;
             } @else {
-                from { 
-                    -webkit-transform: translateZ(600px) rotateX(40deg); 
-                    opacity: 0; 
+                from {
+                    -webkit-transform: translateZ(600px) rotateX(40deg);
+                    opacity: 0;
                 }
-                to { 
-                    -webkit-transform: translateZ(0px) rotateX(0deg); 
-                    opacity: 1; 
+                to {
+                    -webkit-transform: translateZ(0px) rotateX(0deg);
+                    opacity: 1;
                 }
             }
         }
@@ -568,13 +568,13 @@
             @if ($custom) {
                 @content;
             } @else {
-                from { 
-                    transform: translateZ(600px) rotateX(40deg); 
+                from {
+                    transform: translateZ(600px) rotateX(40deg);
                     opacity: 0;
                 }
-                to { 
-                    transform: translateZ(0px) rotateX(0deg); 
-                    opacity: 1; 
+                to {
+                    transform: translateZ(0px) rotateX(0deg);
+                    opacity: 1;
                 }
             }
         }
@@ -1078,9 +1078,132 @@
         }
         @keyframes #{map-get(map-merge($defaultConf, $configMap), name)} {
             @if ($direction == up) {
-            } @else {
-                0% {opacity: 0;}
-                100% {opacity: 1;}
+                from {
+                    -webkit-transform: translate3d(0, $distance, 0);
+                    transform: translate3d(0, $distance, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+            } @else if ($direction == down){
+                from {
+                    -webkit-transform: translate3d(0, $distance, 0);
+                    transform: translate3d(0, $distance, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+            } @else if ($direction == left){
+                from {
+                    -webkit-transform: translate3d($distance, 0, 0);
+                    transform: translate3d($distance, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+            } @else if ($direction == right){
+                from {
+                    -webkit-transform: translate3d(-$distance, 0, 0);
+                    transform: translate3d(-$distance, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+            }
+        }
+    };
+}
+@mixin m-anim-move-out($configMap:(), $direction: down, $distance: 3000px){
+    $defaultConf: (
+        iteration-count: 1,
+        fill-mode: both,
+        name: m-move-out,
+        duration: 1s
+    );
+    @include m-anim-attr(map-merge($defaultConf, $configMap));
+    @at-root(without: all) {
+        @-webkit-keyframes #{map-get(map-merge($defaultConf, $configMap), name)} {
+            @if ($direction == up) {
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(0, -$distance, 0);
+                    transform: translate3d(0, -$distance, 0)
+                }
+            } @else if ($direction == down){
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(0, -$distance, 0);
+                    transform: translate3d(0, -$distance, 0)
+                }
+            } @else if ($direction == left){
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(-$distance, 0, 0);
+                    transform: translate3d(-$distance, 0, 0)
+                }
+            } @else if ($direction == right){
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(-$distance, 0, 0);
+                    transform: translate3d(-$distance, 0, 0)
+
+                }
+            }
+        }
+        @keyframes #{map-get(map-merge($defaultConf, $configMap), name)} {
+            @if ($direction == up) {
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(0, -$distance, 0);
+                    transform: translate3d(0, -$distance, 0)
+                }
+            } @else if ($direction == down){
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(0, -$distance, 0);
+                    transform: translate3d(0, -$distance, 0)
+                }
+            } @else if ($direction == left){
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(-$distance, 0, 0);
+                    transform: translate3d(-$distance, 0, 0)
+                }
+            } @else if ($direction == right){
+                from {
+                    -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0)
+                }
+                to {
+                    -webkit-transform: translate3d(-$distance, 0, 0);
+                    transform: translate3d(-$distance, 0, 0)
+
+                }
             }
         }
     };
