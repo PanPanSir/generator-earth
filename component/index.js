@@ -105,6 +105,16 @@ module.exports = class extends Generator {
             type: 'list',
             choices: [{
 
+                name: 'ReactComponent-latest',
+                value: 'reactcomponent-latest'
+
+            }, {
+
+                name: 'ReactSFC-latest',
+                value: 'reactsfc-latest'
+
+            }, {
+
                 name: 'ReactComponent',
                 value: 'reactcomponent'
 
