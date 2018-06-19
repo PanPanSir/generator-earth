@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom'
 
 // bundleLoader
-import BundleLoader from 'commons/BundleLoader'
+import BundleLoader from 'lm-bundle-loader'
 
 import { fetchListData } from '../../actions/list'
 

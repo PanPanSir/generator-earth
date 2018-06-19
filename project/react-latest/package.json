@@ -21,6 +21,7 @@
         "classnames": "^2.2.5",
         "core-js": "^2.5.7",
         "history": "^4.7.2",
+        "lm-bundle-loader": "^0.1.1",
         "lm-loading": "^0.2.1",
         "prop-types": "^15.5.10",
         "query-string": "^5.0.1",

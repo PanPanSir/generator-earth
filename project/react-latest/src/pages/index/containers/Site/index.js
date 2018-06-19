@@ -10,7 +10,7 @@ import request from 'api/request'
 
 
 // bundleLoader
-import BundleLoader from 'commons/BundleLoader'
+import BundleLoader from 'lm-bundle-loader'
 
 
 import List from './list'

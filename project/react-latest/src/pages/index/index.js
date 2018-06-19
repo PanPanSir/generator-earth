@@ -13,13 +13,15 @@ import {
     withRouter
 } from 'react-router-dom'
 
+// bundleLoader 异步加载路由页面
+import BundleLoader from 'lm-bundle-loader'
+
 import Home from "./containers/Home"
 import Site from './containers/Site'
 
 // scrollToTop 路由切换时候页面默认滚动到顶部，可在此控件中配置白名单
 import ScrollToTop from 'commons/ScrollToTop'
-// bundleLoader 异步加载路由页面
-import BundleLoader from 'commons/BundleLoader'
+
 
 // import containers
 import App from './containers/App'

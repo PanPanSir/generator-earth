@@ -1,4 +1,7 @@
 import React from 'react'
+// bundleLoader
+import BundleLoader from 'lm-bundle-loader'
+
 import Home from "./Home";
 import Site from './Site'
 
@@ -12,8 +15,6 @@ import FooterBar from 'commons/FooterBar'
 
 // scrollToTop
 import ScrollToTop from 'commons/ScrollToTop'
-// bundleLoader
-import BundleLoader from 'commons/BundleLoader'
 
 
 // 异步加载文件 参考文档 https://webpack.js.org/guides/code-splitting/#dynamic-imports
