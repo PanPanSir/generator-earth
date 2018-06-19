@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import Loading from 'lm-loading'
 
+import FooterBar from 'commons/FooterBar'
+
 class App extends Component {
 
 
@@ -24,7 +26,10 @@ class App extends Component {
 
         return (
 
-            <Loading isShow={ this.props.showState }/>
+            <div>
+                <Loading isShow={ this.props.showState }/>
+                <FooterBar/>
+            </div>
 
 
         )

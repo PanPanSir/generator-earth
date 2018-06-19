@@ -11,7 +11,6 @@ import {
     Redirect,
     withRouter
 } from 'react-router-dom'
-import FooterBar from 'commons/FooterBar'
 
 // scrollToTop
 import ScrollToTop from 'commons/ScrollToTop'
@@ -26,9 +25,6 @@ class MainRouter extends React.PureComponent {
     render() {
         return (
             <ScrollToTop>
-
-                <FooterBar/>
-
                 <Switch>
                     <Route path='/home' component={Home}/>
                     <Route path='/site' component={Site}/>
