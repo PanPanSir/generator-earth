@@ -1,5 +1,5 @@
 import { startLoadingAnimation, stopLoadingAnimation } from './index'
-import { isPostTypeJson } from './UtilsConfig'
+import { isPostTypeJson } from './config'
 
 
 

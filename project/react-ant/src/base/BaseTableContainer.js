@@ -30,8 +30,9 @@ export default class extends BaseContainer {
      * table row唯一标识字段
      * @override
      */
-    getRowKey() {
-        throw new Error('getRowKey must be overriden to return a string')
+    getRowKey(record, index) {
+        return index
+        //throw new Error('getRowKey must be overriden to return a string')
     }
     
     
@@ -80,17 +81,48 @@ export default class extends BaseContainer {
     
     
     
+    
+    /**
+     * 表格的子组件，通常用于表格相关的弹窗
+     * @override
+     */
+    getTableExtraContent() {
+        return null
+    }
+    
+    
+    /**
+     * 是否有滚动条
+     * @override
+     */
+    getScroll() {}
+    
+    
+    /**
+     * 选择框，用于批量操作
+     * @override
+     */
+    rowSelection(){
+        return null
+    }
+    
+    
+    
     render () {
+        
         return (
             <div className="ui-background clearfix">
+                {this.getTableExtraContent()}
                 <Table
                     title={this.getTitle}
-                    rowKey={this.getRowKey()}
+                    rowKey={this.getRowKey}
                     dataSource={this.getDataSource()}
                     columns={this.getColumns()}
                     onChange={this.handleTableChange}
                     pagination={this.getPagination()}
                     expandedRowRender={this.getExpandedRowRender}
+                    scroll={this.getScroll()}
+                    rowSelection={this.rowSelection()}
                 />
             </div>
         )

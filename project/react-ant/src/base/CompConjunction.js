@@ -29,7 +29,10 @@ function map2map_action(map) {
 }
 
 
-
+/**
+ * 为Component提供action及reducer
+ * val()写法参照lodash: _.chain(arr)....val()
+ */
 export default function combineContainer(Comp) {
     
     return {

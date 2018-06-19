@@ -31,7 +31,7 @@
         "redux-thunk": "^2.2.0"
     },
     "devDependencies": {
-        "earth-scripts": "^1.0.1"
+        "earth-scripts": "1.0.2-beta"
     },
     "scripts": {
         "start": "earth-scripts start",
@@ -44,11 +44,5 @@
         "extends": "react-app"
     },
     "mockRoot": "mock_server.js",
-    "homepage": "//j1.58cdn.com.cn/jinrong/fund_platform",
-    "proxy": "http://127.0.0.1:8004",
-    "localmock": "http://127.0.0.1:8004",
-    "chenguang": "http://10.252.172.242:8080",
-    "cuicheng": "http://10.252.175.113:8096",
-    "online": "http://10.48.204.159:10002",
-    "local": "http://127.0.0.1:8004"
+    "proxy": "http://127.0.0.1:8004"
 }

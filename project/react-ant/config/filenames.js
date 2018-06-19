@@ -4,8 +4,8 @@ module.exports = {
         js: 'static/js/[name].js',
         jsChunk: 'static/js/[name].chunk.js',
         css: '', // 在<style>中，无需配置
-        img: 'static/img/[name].[hash:8].[ext]',
-        media: 'static/media/[name].[hash:8].[ext]'
+        img: 'static/img/[name].[ext]',
+        media: 'static/media/[name].[ext]'
     },
     prod: {
         js: 'static/js/[name].[chunkhash:8].js',

@@ -1,10 +1,10 @@
-module.exports = function(req, res, params) {
+module.exports = function(req, res, params, utils) {
     
     return {
         "code": 0,
         "msg": "post成功",
         "data": {
-            "id": Math.floor(Math.random()*10),
+            "id": params.id,
             "assetName": "资产方名称",
             "contract": "签约主体",
             "contractDate": "2014-09-07",

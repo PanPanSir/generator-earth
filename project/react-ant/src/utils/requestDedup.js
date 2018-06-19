@@ -1,6 +1,17 @@
 import { startLoadingAnimation, stopLoadingAnimation } from './index'
-import { isPostTypeJson } from './UtilsConfig'
+import { isPostTypeJson } from './config'
 
+/**
+ * demo
+ * 
+ * 
+dedupRequest(url, request => {
+    request.get(url).then(data => {
+        console.log(data)
+    })
+})
+        
+ */
 
 
 // 保存当前的请求历史
@@ -101,16 +112,6 @@ export const dedupRequest = (url, cb) => {
 };
 
 
-/**
- * demo
- * 
- * 
-dedupRequest(url, request => {
-    request.get(url).then(data => {
-        console.log(data)
-    })
-})
-        
- */
+
 
 export default methods;

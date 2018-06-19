@@ -2,13 +2,13 @@ import {applyMiddleware, createStore} from 'redux';
 import { combineReducers } from 'redux'
 import thunk from 'redux-thunk';
 // import promiseMiddleware from 'redux-promise';
-import syncReducers from 'INDEX_ROOT_SOURCE/reducers/index'
+import syncReducers from 'ROOT_SOURCE/reducers/index'
 
 /**
  * 统计middleware
  * 功能：
  * 	控制台打印触发的action
- *  控制台打印触发的action是否为异步action（dispatching a function）
+ *  控制台打印触发的action是否为异步action（dispatching a function）	
  *  控制台打印即将改变的 新state 此时state还未改变
  */
 // eslint-disable-next-line
@@ -23,7 +23,7 @@ const logger = store => next => action => {
 /**
  * middleware队列
  * 排序有要求：
- *  thunk置底
+ *  thunk置底 
  * thunk的作用：
  *  根据传入的action类型，来实现异步action
  *  if (typeof action === 'function') {
@@ -38,7 +38,7 @@ let middlewares = [
 
 /**
  * 通过redux的compose函数 将store.dispatch和middlewares进行currying化来实现外倒内调用
- *             ----> --->
+ *             ----> --->   
  * 新dispatch = logger(thunk(store.dispatch))
  */
 let createAppStore = applyMiddleware(...middlewares)(createStore);
