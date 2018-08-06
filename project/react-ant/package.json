@@ -31,7 +31,7 @@
         "redux-thunk": "^2.2.0"
     },
     "devDependencies": {
-        "earth-scripts": "1.0.2"
+        "earth-scripts": "^1.0.4"
     },
     "scripts": {
         "start": "earth-scripts start",

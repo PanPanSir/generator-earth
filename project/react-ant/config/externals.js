@@ -66,6 +66,7 @@ module.exports = {
     'moment': {
         root: 'moment',
         entry: {
+            // todo: path需要改为cdn上已经汉化的版本
             path: '//cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js',
             type: 'js'
         },
@@ -73,10 +74,16 @@ module.exports = {
     },
     'antd': {
         root: 'antd',
-        entry: {
-            path: '//cdnjs.cloudflare.com/ajax/libs/antd/3.1.0/antd.min.js',
-            type: 'js'
-        },
+        entry: [
+            {
+                path: '//cdnjs.cloudflare.com/ajax/libs/antd/3.1.0/antd.min.js',
+                type: 'js'
+            },
+            {
+                path: '//cdnjs.cloudflare.com/ajax/libs/antd/3.1.0/antd.min.css',
+                type: 'css'
+            }
+        ],
         files: ['index.html']
     }
 }

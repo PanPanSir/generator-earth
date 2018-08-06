@@ -294,13 +294,10 @@ module.exports = class extends Generator {
 
             case 'react-ant':
 
-                if (this.useRedux) {
-                    tplFile = `${this.frameType}-redux`;
-                } else {
-                    tplFile = `${this.frameType}`;
-                }
+                tplFile = `${this.frameType}`;
 
                 tplPath = this.templatePath(`../${tplFile}`);
+
                 this.fs.copyTpl(
                     tplPath,
                     outPutUrl,
@@ -317,6 +314,13 @@ module.exports = class extends Generator {
                     }
                 );
 
+                // Copy all dotfiles
+                // antd pc用cdn形式，不采用babel-plugin
+                this.fs.copy(
+                    this.templatePath('./.babelrc'),
+                    outPutUrl + '.babelrc'
+                );
+
                 this.fs.copyTpl(
                     this.templatePath(`../_gitignore`),
                     outPutUrl + '.gitignore'
@@ -325,11 +329,6 @@ module.exports = class extends Generator {
                     this.templatePath(`../_editorconfig`),
                     outPutUrl + '.editorconfig'
                 );
-                this.fs.copyTpl(
-                    this.templatePath(`../_babelrc`),
-                    outPutUrl + '.babelrc'
-                );
-
 
                 break;
 

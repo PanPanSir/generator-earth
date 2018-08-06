@@ -76,7 +76,7 @@
         "extends": "react-app"
     },
     "devDependencies": {
-        "earth-scripts": "^0.2.4",
+        "earth-scripts": "^0.2.6",
         "object-assign": "4.1.1",
         "promise": "8.0.1"
     },
