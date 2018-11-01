@@ -85,7 +85,26 @@ module.exports = class extends Generator {
                 name: 'PC',
                 value: 'pc'
 
+            }, {
+
+                name: 'nodejs',
+                value: 'nodejs'
+
             }]
+
+        }, {
+
+            name: 'frameType',
+            message: '框架选型',
+            type: 'list',
+            choices: [{
+                name: 'use-cloud',
+                value: 'cloud'
+            }, {
+                name: 'not-use-cloud',
+                value: 'standalone'
+            }],
+            when: answer => answer.projectType === 'nodejs'
 
         }, {
 
@@ -96,10 +115,8 @@ module.exports = class extends Generator {
                 name: 'React-latest',
                 value: 'react-latest'
             }, {
-
                 name: 'React',
                 value: 'react'
-
             }],
             when: answer => answer.projectType === 'h5'
 
@@ -237,6 +254,28 @@ module.exports = class extends Generator {
         let tplPath = '';
 
         switch (this.frameType) {
+            
+            case 'cloud':
+            case 'standalone':
+            
+                tplFile = this.frameType;
+                
+                tplPath = this.templatePath(`../${tplFile}`);
+
+                this.fs.copyTpl(
+                    tplPath,
+                    outPutUrl,
+                    {
+                        name: this.name,
+                        author: this.author,
+                        //frameType: this.frameType,
+                        email: this.email,
+                        version: this.version,
+                        desc: this.desc,
+                        groupName: this.groupName
+                    }
+                );
+            
 
             case 'react':
             case 'react-latest':
@@ -292,6 +331,7 @@ module.exports = class extends Generator {
 
                 break;
 
+            
             case 'react-ant':
 
                 tplFile = `${this.frameType}`;
